@@ -1,7 +1,7 @@
 #ifndef _S88_OBSERVER_H_
 #define _S88_OBSERVER_H_
 
-#include "train.h"
+#include "train/train.h"
 
 // S88 Sensor Module Configuration
 #define S88_MAX_MODULES 31

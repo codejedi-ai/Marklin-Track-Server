@@ -1,7 +1,7 @@
 #ifndef _MARKLIN_INTERFACE_H_
 #define _MARKLIN_INTERFACE_H_
 
-#include "train.h"
+#include "train/train.h"
 #include "track/track_table.h"
 
 // Märklin 6051 Interface command types

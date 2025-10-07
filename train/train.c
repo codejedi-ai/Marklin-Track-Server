@@ -1,5 +1,5 @@
 #include "train.h"
-#include "track/track_data_new.h"
+#include "../track/track_data_new.h"
 // heap temporarily unused
 #include <stdio.h>
 #include <stdlib.h>

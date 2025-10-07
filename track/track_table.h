@@ -2,7 +2,7 @@
 #define _TRACK_TABLE_H_
 
 #include "track_node.h"
-#include "../train.h"
+#include "../train/train.h"
 
 // Track table for Märklin interface interaction
 #define MAX_TRACK_TABLE_SIZE 1000
