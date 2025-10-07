@@ -1,5 +1,6 @@
 #include "track_table.h"
 #include "track_data_new.h"
+#include "../s88_observer.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -320,12 +321,20 @@ void initialize_default_track_table(track_table_t* table, track_node* track_node
         }
     }
     
-    // Add some example turnouts
-    add_track_element(table, TRACK_ELEMENT_TURNOUT, "TURNOUT_A1", NULL, 1, 0, 0);
-    add_track_element(table, TRACK_ELEMENT_TURNOUT, "TURNOUT_A2", NULL, 2, 0, 0);
-    add_track_element(table, TRACK_ELEMENT_TURNOUT, "TURNOUT_B1", NULL, 3, 0, 0);
-    
-    // Add some example signals
+    // Add real turnouts from track data
+    int turnout_address = 1;
+    for (int i = 0; i < TRACK_MAX; i++) {
+        if (track_nodes[i].num > 0 && track_nodes[i].type == NODE_BRANCH) {
+            char name[32];
+            snprintf(name, sizeof(name), "TURNOUT_%s", track_nodes[i].name);
+            
+            add_track_element(table, TRACK_ELEMENT_TURNOUT, name, &track_nodes[i], 
+                             turnout_address, 0, 0);
+            turnout_address++;
+        }
+    }
+
+    // Add some example signals (these would need to be defined in track data)
     add_track_element(table, TRACK_ELEMENT_SIGNAL, "SIGNAL_A1", NULL, 10, 0, 0);
     add_track_element(table, TRACK_ELEMENT_SIGNAL, "SIGNAL_A2", NULL, 11, 0, 0);
 }

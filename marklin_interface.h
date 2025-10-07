@@ -2,7 +2,7 @@
 #define _MARKLIN_INTERFACE_H_
 
 #include "train.h"
-#include "track_table.h"
+#include "track/track_table.h"
 
 // Märklin 6051 Interface command types
 typedef enum {

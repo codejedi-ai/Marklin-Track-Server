@@ -1,7 +1,7 @@
 #ifndef _TRAIN_H_
 #define _TRAIN_H_
 
-#include "track_node.h"
+#include "track/track_node.h"
 
 #define MAX_TRAINS 10
 #define MAX_SPEED_STEPS 14

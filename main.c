@@ -2,9 +2,9 @@
 #include <string.h>
 #include <termios.h>
 #include <unistd.h>
-#include "track_server.h"
+#include "track/track_server.h"
 #include "trie.h"
-#include "track_table.h"
+#include "track/track_table.h"
 
 #define MAX_COMMAND_LENGTH 256
 

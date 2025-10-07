@@ -1,8 +1,8 @@
 #ifndef _TRACK_SERVER_H_
 #define _TRACK_SERVER_H_
 
-#include "train.h"
-#include "marklin_interface.h"
+#include "../train.h"
+#include "../marklin_interface.h"
 #include "track_node.h"
 #include "track_data_new.h"
 #include "track_table.h"
