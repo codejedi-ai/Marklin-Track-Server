@@ -194,7 +194,9 @@ void initialize_marklin_trie(trie_t* trie) {
     }
     
     // Accessory commands (two bytes: position + address)
-    for (int addr = 0; addr <= 255; addr++) {
+    // NOTE: Skip address 0 here to avoid embedding NUL in C-strings;
+    // address 0 (meaning 256) can be handled separately if needed.
+    for (int addr = 1; addr <= 255; addr++) {
         char straight_cmd[3] = {33, addr, '\0'};  // 33 + address for straight
         char branch_cmd[3] = {34, addr, '\0'};    // 34 + address for branch
         insert_command(trie, straight_cmd, TRIE_CMD_ACCESSORY_POSITION, NULL);
