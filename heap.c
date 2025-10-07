@@ -1,15 +1,18 @@
 #include "heap.h"
 #include <stdlib.h>
 #include <stdio.h>
+
 char isEmpty(struct heap* h){
     return h->size == 0;
 }
+
 void initHeap(struct heap* h, int (*compare)(void*, void*)){
     h->heapData = (void**)malloc(sizeof(void*)*10);
     h->size = 0;
     h->capacity = 10;
     h->compare = compare;
 }
+
 void resize(struct heap* h){
     // make a new array with double the size
     void** newHeap = (void**)malloc(sizeof(void*)*h->capacity*2);
@@ -23,6 +26,7 @@ void resize(struct heap* h){
     h->heapData = newHeap;
     h->capacity *= 2;
 }
+
 void insert(struct heap* h, void* data){
     // make a new heapNode with the data
     // need to reallocate the array before entrey, for this case assume the heap is already big enougth
@@ -43,6 +47,7 @@ void insert(struct heap* h, void* data){
     }
     // now the heap may not be in order, so we need to fix it
 }
+
 void* removeMax(struct heap* h){
     // get the max value
     void* max = h->heapData[0];

@@ -1,8 +1,0 @@
-#include "trie.h"
-struct TrieNode { 
-    struct TrieNode* children[ALPHABET_SIZE]; 
-  
-    // This will keep track of number of strings that are 
-    // stored in the Trie from root node to any Trie node. 
-    int wordCount; 
-};
