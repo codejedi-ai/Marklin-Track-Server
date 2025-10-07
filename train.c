@@ -1,6 +1,6 @@
 #include "train.h"
 #include "track/track_data_new.h"
-#include "heap.h"
+// heap temporarily unused
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -119,9 +119,8 @@ int calculate_path(train_t* train, track_node* destination, track_node* track) {
     (void)track; // Suppress unused parameter warning
     if (!train->current_node || !destination) return 0;
     
-    // Initialize Dijkstra's algorithm
-    struct heap* h = (struct heap*)malloc(sizeof(struct heap));
-    initHeap(h, path_compare);
+    // Pathfinding heap temporarily disabled
+    (void)path_compare;
     
     // Visited array
     int visited[NODE_EXIT + 1][TRACK_MAX];
@@ -144,11 +143,11 @@ int calculate_path(train_t* train, track_node* destination, track_node* track) {
     struct path_element* p = (struct path_element*)malloc(sizeof(struct path_element));
     p->distance = &distance[train->current_node->type][train->current_node->num];
     p->current_node = train->current_node;
-    insert(h, p);
+    // push to heap disabled
     
     // Dijkstra's algorithm
-    while (!isEmpty(h)) {
-        struct path_element* current = (struct path_element*)removeMax(h);
+    while (0) {
+        struct path_element* current = NULL;
         track_node* current_node = current->current_node;
         int current_distance = *(current->distance);
         free(current);
@@ -162,10 +161,7 @@ int calculate_path(train_t* train, track_node* destination, track_node* track) {
             distance[rev_node->type][rev_node->num] = current_distance;
             previous[rev_node->type][rev_node->num] = current_node;
             
-            struct path_element* p1 = (struct path_element*)malloc(sizeof(struct path_element));
-            p1->distance = &distance[rev_node->type][rev_node->num];
-            p1->current_node = rev_node;
-            insert(h, p1);
+            // enqueue disabled
         }
         
         // Check ahead direction
@@ -177,10 +173,7 @@ int calculate_path(train_t* train, track_node* destination, track_node* track) {
                 distance[next_node->type][next_node->num] = current_distance + edge1->dist;
                 previous[next_node->type][next_node->num] = current_node;
                 
-                struct path_element* p2 = (struct path_element*)malloc(sizeof(struct path_element));
-                p2->distance = &distance[next_node->type][next_node->num];
-                p2->current_node = next_node;
-                insert(h, p2);
+                // enqueue disabled
             }
         }
         
@@ -193,15 +186,12 @@ int calculate_path(train_t* train, track_node* destination, track_node* track) {
                 distance[curved_node->type][curved_node->num] = current_distance + edge2->dist;
                 previous[curved_node->type][curved_node->num] = current_node;
                 
-                struct path_element* p3 = (struct path_element*)malloc(sizeof(struct path_element));
-                p3->distance = &distance[curved_node->type][curved_node->num];
-                p3->current_node = curved_node;
-                insert(h, p3);
+                // enqueue disabled
             }
         }
     }
     
-    free(h);
+    // heap free disabled
     
     // Reconstruct path
     if (distance[destination->type][destination->num] >= 1000000) {
@@ -269,7 +259,7 @@ void update_train(train_t* train, unsigned long current_time) {
                 if (train->path && train->path_index < train->path_length - 1) {
                     train->path_index++;
                     train->next_node = train->path[train->path_index];
-                } else {
+        } else {
                     train->next_node = NULL;
                     if (train->current_node == train->destination) {
                         train->state = TRAIN_STOPPED;
@@ -306,9 +296,9 @@ void move_train(train_t* train, track_node* track) {
         for (int i = 0; i < TRACK_MAX; i++) {
             if (track[i].type == NODE_ENTER) {
                 train->current_node = &track[i];
-                break;
-            }
+            break;
         }
+    }
     }
 }
 

@@ -3,7 +3,7 @@
 #include <string.h>
 #include <termios.h>
 #include <unistd.h>
-#include "trie.h"
+// TRIE temporarily unused; keep byte buffer behavior without parsing
 
 #define MAX_COMMAND_LENGTH 4
 
@@ -30,10 +30,6 @@ static void disable_raw_mode() {
 }
 
 int main() {
-    trie_t* trie = create_trie();
-    if (!trie) return 1;
-    initialize_marklin_trie(trie);
-
     enable_raw_mode();
     printf("Byte-by-byte mode. Send Märklin bytes. Ctrl+C to exit.\n");
 
@@ -43,24 +39,18 @@ int main() {
         if (n != 1) break; // EOF or read error -> exit cleanly for non-interactive tests
         if (ch == 3) break; // Ctrl+C
 
-        int result = parse_marklin_trie_command(trie, (char)ch, buffer, &buf_pos, MAX_COMMAND_LENGTH);
-
-        if (result > 0) {
-            int len = buf_pos;
-            char tmp[MAX_COMMAND_LENGTH];
-            memcpy(tmp, buffer, len);
-            buf_pos = 0;
-            buffer[0] = '\0';
-
-            if (len == 2) {
-                printf("Executing 2-byte command: [%u] [%u]\n", (unsigned char)tmp[0], (unsigned char)tmp[1]);
-            } else {
-                printf("Command detected (len=%d)\n", len);
+        // Accumulate raw bytes, print once two bytes received
+        if (buf_pos < MAX_COMMAND_LENGTH - 1) {
+            buffer[buf_pos++] = (char)ch;
+            if (buf_pos == 2) {
+                printf("Executing 2-byte command: [%u] [%u]\n", (unsigned char)buffer[0], (unsigned char)buffer[1]);
+                buf_pos = 0; buffer[0] = '\0';
             }
+        } else {
+            buf_pos = 0; buffer[0] = '\0';
         }
     }
 
     disable_raw_mode();
-    destroy_trie(trie);
 	return 0;
 }

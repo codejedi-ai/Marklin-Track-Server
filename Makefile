@@ -8,7 +8,7 @@ CFLAGS = -Wall -Wextra
 TARGET = my_program
 
 # Specify the source files
-SRCS := $(wildcard *.c) $(wildcard *.S) $(wildcard C-heap/*.c) $(wildcard C-heap/*.S) $(wildcard track/*.c)
+SRCS := $(wildcard *.c) $(wildcard *.S) $(wildcard C-heap/*.c) $(wildcard C-heap/*.S) $(wildcard track/*.c) $(wildcard dsa/*.c)
 
 # Specify the object files
 OBJS = $(SRCS:.c=.o)
