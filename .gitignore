@@ -1,1 +1,17 @@
-/.vs
+# Secrets — never commit the OpenRouter key
+token.txt
+.env
+*.env
+
+# Pre-pivot code, safe to delete
+agent/_old_datawise/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# OS
+.DS_Store

@@ -1,0 +1,53 @@
+{
+  "inventory_metadata": {
+    "export_date": "2024-08-12T00:00:00Z",
+    "source": "Example SaaS Management Platform",
+    "export_type": "Application Inventory Report",
+    "total_applications": 3,
+    "organization": "Example Corp"
+  },
+  "applications": [
+    {
+      "app_id": "APP-101",
+      "name": "Notion",
+      "vendor": "Notion Labs Inc.",
+      "app_type": "SaaS",
+      "category": "Productivity",
+      "deployment": "cloud",
+      "owner": "IT Operations",
+      "users_count": 31,
+      "integrations": ["Slack", "GitHub", "Google Drive"],
+      "sso_enabled": true,
+      "contract_renewal": "2025-08-01",
+      "annual_cost_usd": 9000
+    },
+    {
+      "app_id": "APP-102",
+      "name": "Datadog",
+      "vendor": "Datadog Inc.",
+      "app_type": "SaaS",
+      "category": "Observability",
+      "deployment": "cloud",
+      "owner": "DevOps",
+      "users_count": 18,
+      "integrations": ["PagerDuty", "Slack", "AWS Console"],
+      "sso_enabled": true,
+      "contract_renewal": "2025-05-20",
+      "annual_cost_usd": 42000
+    },
+    {
+      "app_id": "APP-103",
+      "name": "Linear",
+      "vendor": "Linear Orbit Inc.",
+      "app_type": "SaaS",
+      "category": "Project Management",
+      "deployment": "cloud",
+      "owner": "Engineering",
+      "users_count": 24,
+      "integrations": ["GitHub", "Slack"],
+      "sso_enabled": true,
+      "contract_renewal": "2025-09-10",
+      "annual_cost_usd": 12000
+    }
+  ]
+}

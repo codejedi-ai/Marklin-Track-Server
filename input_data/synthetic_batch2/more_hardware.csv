@@ -1,0 +1,5 @@
+device_id,hostname,assigned_to,os,ip_address,mac_address,last_checkin,location,encryption_status,status,device_type,serial_number,department
+C-19283,laptop-jdoe,John Doe,macOS Sonoma 14.6,10.10.22.5,AA:BB:CC:DD:11:22,2024-08-12T09:15:00Z,London,FileVault 2,active,laptop,LAP-JD-20230615,Engineering
+C-30001,laptop-priya,Priya Patel,Windows 11 Pro,10.10.23.11,1A:2B:3C:4D:5E:6F,2024-08-11T17:20:00Z,London,BitLocker Enabled,active,laptop,LAP-PP-20240710,Marketing
+SRV-2001,prod-db-01,Sarah Chen,Ubuntu 24.04 LTS,10.10.50.10,0A:1B:2C:3D:4E:5F,2024-08-12T03:00:00Z,San Francisco Office,LUKS Full Disk Encryption,active,server,SRV-ENG-20240101,Engineering
+C-30002,laptop-tom,Tom Becker,macOS Sequoia 15.0,10.10.24.7,9F:8E:7D:6C:5B:4A,2024-08-10T14:05:00Z,New York HQ,FileVault Enabled,active,laptop,LAP-TB-20240805,Sales

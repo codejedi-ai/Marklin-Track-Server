@@ -1,0 +1,60 @@
+[
+  {
+    "id": "b908d77606574eec8441844f113a8e56",
+    "title": "Who uses slack",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Who uses slack",
+        "ts": "2026-06-26T22:00:59.755145+00:00"
+      },
+      {
+        "role": "assistant",
+        "content": "The users of Slack include Alex Johnson, Michael Brown, Emma Wilson, Robert Martinez, Jane Doe, and John Doe.",
+        "cypher": "MATCH (u:User)-[:USES]->(a:App {name_norm: 'slack'}) RETURN u.name, u.email",
+        "rows": [
+          {
+            "u.name": "Alex Johnson",
+            "u.email": "a.johnson.contractor@example.com"
+          },
+          {
+            "u.name": "Michael Brown",
+            "u.email": "m.brown@example.com"
+          },
+          {
+            "u.name": "Emma Wilson",
+            "u.email": "e.wilson@example.com"
+          },
+          {
+            "u.name": "Robert Martinez",
+            "u.email": "r.martinez@example.com"
+          },
+          {
+            "u.name": "Jane Doe",
+            "u.email": "jane.d@example.com"
+          },
+          {
+            "u.name": "John Doe",
+            "u.email": "john.d@example.com"
+          }
+        ],
+        "thoughts": [
+          "Thought: The current language of the user is: English. I need to use a tool to help me answer the question.",
+          "Action: run_cypher",
+          "Action Input: {'cypher': \"MATCH (u:User)-[:USES]->(a:App {name_norm: 'slack'}) RETURN u.name, u.email\"}",
+          "Observation: [{\"u.name\": \"Alex Johnson\", \"u.email\": \"a.johnson.contractor@example.com\"}, {\"u.name\": \"Michael Brown\", \"u.email\": \"m.brown@example.com\"}, {\"u.name\": \"Emma Wilson\", \"u.email\": \"e.wilson@example.com\"}, {\"u.name\": \"Robert Martinez\", \"u.email\": \"r.martinez@example.com\"}, {\"u.name\": \"Jane Doe\", \"u.email\": \"jane.d@example.com\"}, {\"u.name\": \"John Doe\", \"u.email\": \"john.d@example.com\"}]",
+          "Thought: I can answer without using any more tools. I'll use the user's language to answer.",
+          "Answer: The users of Slack include Alex Johnson, Michael Brown, Emma Wilson, Robert Martinez, Jane Doe, and John Doe."
+        ],
+        "ts": "2026-06-26T22:01:04.319331+00:00"
+      },
+      {
+        "role": "user",
+        "content": "What are all the devices in here",
+        "ts": "2026-06-26T22:01:12.931226+00:00"
+      }
+    ],
+    "created_at": "2026-06-26T22:00:59.721647+00:00",
+    "updated_at": "2026-06-26T22:01:12.931252+00:00"
+  }
+]

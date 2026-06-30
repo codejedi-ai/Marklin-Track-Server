@@ -1,0 +1,24 @@
+[
+  {
+    "user_id": "u_900",
+    "name": "Priya Patel",
+    "email": "priya.p@example.com",
+    "employee_id": "E-2026-099",
+    "groups": ["Platform Engineering Team", "Engineering"],
+    "apps": ["GitHub", "Slack", "PagerDuty", "Internal HR Portal", "Linear"],
+    "mfa_enabled": true,
+    "last_login": "2026-06-24T14:22:00Z",
+    "status": "ACTIVE"
+  },
+  {
+    "user_id": "u_901",
+    "name": "Dani Kim",
+    "email": "d.kim@example.com",
+    "employee_id": "E-2026-100",
+    "groups": ["HR Department"],
+    "apps": ["Slack", "Workday", "Internal HR Portal"],
+    "mfa_enabled": false,
+    "last_login": "2026-06-22T10:05:00Z",
+    "status": "ACTIVE"
+  }
+]

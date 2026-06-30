@@ -1,0 +1,42 @@
+[
+  {
+    "user_id": "u_999",
+    "name": "John Doe",
+    "email": "john.d@example.com",
+    "groups": ["Engineering", "Platform"],
+    "apps": ["GitHub", "Slack", "Notion"],
+    "mfa_enabled": true,
+    "last_login": "2024-08-12T08:55:00Z",
+    "status": "ACTIVE"
+  },
+  {
+    "user_id": "u_410",
+    "name": "Priya Patel",
+    "email": "priya.patel@example.com",
+    "groups": ["Marketing"],
+    "apps": ["Slack", "Figma", "Notion"],
+    "mfa_enabled": true,
+    "last_login": "2024-08-11T16:40:00Z",
+    "status": "ACTIVE"
+  },
+  {
+    "user_id": "u_415",
+    "name": "Tom Becker",
+    "email": "tom.becker@example.com",
+    "groups": ["Sales"],
+    "apps": ["Salesforce", "Slack"],
+    "mfa_enabled": false,
+    "last_login": "2024-08-10T13:30:00Z",
+    "status": "ACTIVE"
+  },
+  {
+    "user_id": "u_420",
+    "name": "Nina Rao",
+    "email": "nina.rao@example.com",
+    "groups": ["Engineering", "Data Platform"],
+    "apps": ["GitHub", "Jira", "Datadog", "Slack"],
+    "mfa_enabled": true,
+    "last_login": "2024-08-12T07:10:00Z",
+    "status": "ACTIVE"
+  }
+]

@@ -1,0 +1,117 @@
+{
+  "_doc": "All deterministic normalization rules live here so they can be edited without code changes. Regex patterns are compiled case-insensitively at load time. After editing, restart the api container (docker compose restart api).",
+  "os_families": {
+    "macos": "macOS",
+    "mac os": "macOS",
+    "osx": "macOS",
+    "ubuntu": "Ubuntu",
+    "windows": "Windows",
+    "debian": "Debian",
+    "rhel": "RHEL",
+    "centos": "CentOS",
+    "linux": "Linux"
+  },
+  "status": {
+    "active": [
+      "active",
+      "enabled",
+      "operational"
+    ],
+    "inactive": [
+      "inactive",
+      "deactivated",
+      "disabled",
+      "retired",
+      "decommissioned"
+    ]
+  },
+  "encryption_false_tokens": [
+    "",
+    "none",
+    "disabled",
+    "false",
+    "no",
+    "off"
+  ],
+  "bool_true_tokens": [
+    "true",
+    "yes",
+    "1",
+    "enabled",
+    "on"
+  ],
+  "bool_false_tokens": [
+    "false",
+    "no",
+    "0",
+    "disabled",
+    "off"
+  ],
+  "team_suffix_pattern": "\\s+(team|teams|org|group|squad|dept|department)\\s*$",
+  "location_subloc_pattern": "\\s*[-,]\\s*(floor|fl|level|lvl|suite|wing|room|bldg|building)\\b.*$",
+  "_location_detail_doc": "TWO patterns: forward = 'keyword value' (Floor 15, Suite #200, Building B); reverse = 'value keyword' (15 Floor, 15th Floor, 22nd Fl). Both captured into the same details dict so '15 Floor' and 'Floor 15' parse identically. Value must be a digit run (optional ordinal), short alphanumeric ID (B, A2), or hyphenated range (3-5) — never another English word, so 'Wing Floor 3' parses cleanly as wing=B (from reverse) AND floor=3.",
+  "location_detail_finder_pattern":         "\\b(floor|fl|level|lvl|suite|wing|room|bldg|building)\\b[\\s.\\-#:]*(\\d+(?:st|nd|rd|th)?(?:\\-\\d+)?|[A-Z]\\d*)\\b",
+  "location_detail_finder_reverse_pattern": "\\b(\\d+(?:st|nd|rd|th)?|[A-Z]\\d*)\\s*(floor|fl|level|lvl|suite|wing|room|bldg|building)\\b",
+  "location_detail_aliases": {
+    "fl": "floor",
+    "lvl": "level",
+    "bldg": "building"
+  },
+  "_app_aliases_doc": "Map name_norm (lowercased, collapsed whitespace) to a canonical name_norm so equivalent product names collapse to one App node. Keys and values are both in name_norm form. The display 'name' on the node is still latest-write-wins from the source; only the merge key is affected.",
+  "app_aliases": {
+    "salesforce crm":    "salesforce",
+    "aws console":       "aws",
+    "github enterprise": "github"
+  },
+
+  "_app_categories_doc": "Software taxonomy. Each category maps to a list of name_norm keywords. An App's `categories[]` prop is populated at ingest from this table, so semantic queries like 'show all CRM apps' work without an LLM. The more you fill in here, the more knowledgeable the deterministic pipeline becomes. Categories accumulate (UNION-merged), so an app can belong to multiple.",
+  "app_categories": {
+    "cloud":               ["aws", "azure", "gcp", "google cloud", "aws console", "ec2", "s3"],
+    "crm":                 ["salesforce", "salesforce crm", "hubspot", "pipedrive"],
+    "version_control":     ["github", "github enterprise", "gitlab", "bitbucket"],
+    "communication":       ["slack", "microsoft teams", "zoom", "google meet"],
+    "incident_management": ["pagerduty", "opsgenie", "victorops"],
+    "monitoring":          ["datadog", "grafana", "new relic", "splunk"],
+    "identity":            ["okta", "okta admin", "auth0", "active directory"],
+    "ticketing":           ["jira", "linear", "asana"],
+    "documentation":       ["confluence", "notion"],
+    "hr":                  ["workday", "bamboohr", "internal hr portal", "payroll system"],
+    "design":              ["figma", "sketch", "adobe creative cloud"],
+    "ci_cd":               ["jenkins ci/cd", "circleci", "github actions"],
+    "containers":          ["docker", "kubernetes"],
+    "database":            ["postgresql database", "mysql", "mongodb", "backend api"],
+    "security":            ["1password", "wiz"],
+    "finance":             ["quickbooks", "expensify"],
+    "sales":               ["linkedin sales navigator"],
+    "productivity":        ["google drive", "docusign"],
+    "analytics":           ["analytics platform"]
+  },
+
+  "_location_types_doc": "Order matters: longer / more specific patterns first so 'Head Office' beats 'Office'.",
+  "location_types": [
+    {
+      "pattern": "\\b(headquarters?|head\\s*office|hq)\\b\\.?",
+      "canonical": "Headquarters"
+    },
+    {
+      "pattern": "\\b(data\\s*center|datacenter|dc)\\b",
+      "canonical": "Datacenter"
+    },
+    {
+      "pattern": "\\b(campus)\\b",
+      "canonical": "Campus"
+    },
+    {
+      "pattern": "\\b(branch\\s+office|office)\\b",
+      "canonical": "Office"
+    },
+    {
+      "pattern": "\\b(laboratory|lab)\\b",
+      "canonical": "Lab"
+    },
+    {
+      "pattern": "\\b(warehouse)\\b",
+      "canonical": "Warehouse"
+    }
+  ]
+}
